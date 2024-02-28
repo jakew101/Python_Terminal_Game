@@ -5,3 +5,21 @@
 # If correct, the player guesses if the next card is red or black. 
 # If correct, the player guesses the suit of the next card. 
 # If correct, the player answers the final question to win a point: face card or nah?
+
+import random
+
+
+class Card:
+    def __init__(self, suit, value):
+        self.suit = suit
+        self.value = value
+
+    def __repr__(self):
+        return "{value} of {suit}".format(value=self.value, suit=self.suit)
+
+suits = ["spades", "clubs", "hearts", "diamonds"]
+
+values = range(1,14)
+
+deck = [Card(suit, value) for suit in suits for value in values]
+print(deck)
