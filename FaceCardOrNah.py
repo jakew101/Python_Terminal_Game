@@ -14,23 +14,27 @@ class Card:
     def __init__(self, suit, value):
         self.suit = suit
         self.value = value
-        self.val_num = values[value]
+        self.val_num = values[self.value]
 
     def __repr__(self):
         return "{value} of {suit}".format(value=self.value, suit=self.suit)
 
-suits = ["spades", "clubs", "hearts", "diamonds"]
+suits = ["Spades", "Clubs", "Hearts", "Diamonds"]
 
-values = {"ace": 1, "2": 2, "3": 3, "4": 4, "5": 5, "6": 6, "7": 7, "8": 8, "9": 9, "10": 10, "jack": 11, "queen": 12, "king": 13}
+values = {"Ace": 1, "2": 2, "3": 3, "4": 4, "5": 5, "6": 6, "7": 7, "8": 8, "9": 9, "10": 10, "Jack": 11, "Queen": 12, "King": 13}
 
 deck = [Card(suit, value) for suit in suits for value in values]
 
 
 def draw_cards():
     card_test = [deck.pop(deck.index(random.choice(deck))) for i in range(5)]
+    print(card_test[0])
     turn_one = input("Higher or lower? ").lower()
+    print(card_test[1])
     if turn_one == "higher":
-        if card_test[0].val_num > 0:
-            print("PASS")
+        if card_test[1].val_num > card_test[0].val_num:
+            turn_two = input("Outside or in between? ").lower()
+    else:
+        print("Nope!")
 
 draw_cards()
