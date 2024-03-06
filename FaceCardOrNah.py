@@ -4,11 +4,13 @@
 # If correct, the player guesses if the next card is in between or outside of the two face up cards. 
 # If correct, the player guesses if the next card is red or black. 
 # If correct, the player guesses the suit of the next card. 
-# If correct, the player answers the final question to win a point: face card or nah?
+# If correct, the player answers the final question: face card or nah?
 # If any of these decisions are not correct, the next player goes (rotational).
 
-
+from pyfiglet import figlet_format
 import random
+
+print(figlet_format("Face Card or Nah?", font = "standard"))
 
 class Card:
     def __init__(self, suit, value):
@@ -37,4 +39,11 @@ def draw_cards():
     else:
         print("Nope!")
 
-draw_cards()
+def draw():
+    answer = input("Play? ").lower()
+    if answer == "yes":
+        draw_cards()
+    else:
+        print("Okay...")
+
+draw()
