@@ -17,6 +17,7 @@ class Card:
         self.suit = suit
         self.value = value
         self.val_num = values[self.value]
+        self.color = "red" if self.suit == "Hearts" or self.suit == "Diamonds" else "black"
         self.is_face_card = True if self.val_num in range(11, 14) else False
 
     def __repr__(self):
@@ -41,6 +42,7 @@ def first_question():
         return True
     return False
 
+# Revisit logic if first card is greater than the second card
 def second_question():
     second_question = input("In between or outside? ").lower()
     if second_question == "in between" and card_draw[2].val_num in range(card_draw[0].val_num, (card_draw[1].val_num)):
@@ -51,15 +53,13 @@ def second_question():
 
 def third_question():
     third_question = input("Red or black? ").lower()
-    if third_question == "red" and card_draw[3].suit == "Diamonds" or "Hearts":
-        return True
-    elif third_question == "black" and card_draw[3].suit == "Spades" or "Clubs":
+    if third_question == card_draw[3].color:
         return True
     return False
 
 def fourth_question():
     fourth_question = input("Suit? ").lower()
-    if fourth_question == card_draw[4].suit:
+    if fourth_question == card_draw[4].suit.lower():
         return True
     return False
 
@@ -74,15 +74,23 @@ def final_question():
 def start():
     # printing card_draw for testing - remove later
     print(card_draw)
+    print(card_draw[0])
     if first_question():
+        print(card_draw[1])
         if second_question():
+            print(card_draw[2])
             if third_question():
+                print(card_draw[3])
                 if fourth_question():
+                    print(card_draw[4])
                     if final_question():
+                        print(card_draw[5])
                         print("PASS")
     else:
         print("FAIL")
 
-print(card_draw)
-for i in range(card_draw[0].val_num, card_draw[1].val_num):
-    print(i)
+start()
+
+# print(card_draw)
+# for i in range(card_draw[0].val_num, card_draw[1].val_num):
+#     print(i)
