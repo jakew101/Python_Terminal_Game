@@ -27,23 +27,40 @@ values = {"Ace": 1, "2": 2, "3": 3, "4": 4, "5": 5, "6": 6, "7": 7, "8": 8, "9":
 
 deck = [Card(suit, value) for suit in suits for value in values]
 
-
 def draw_cards():
-    card_test = [deck.pop(deck.index(random.choice(deck))) for i in range(5)]
-    print(card_test[0])
-    turn_one = input("Higher or lower? ").lower()
-    print(card_test[1])
-    if turn_one == "higher":
-        if card_test[1].val_num > card_test[0].val_num:
-            turn_two = input("Outside or in between? ").lower()
-    else:
-        print("Nope!")
+    return [deck.pop(deck.index(random.choice(deck))) for i in range(6)]
 
-def draw():
-    answer = input("Play? ").lower()
-    if answer == "yes":
-        draw_cards()
-    else:
-        print("Okay...")
+card_draw = draw_cards()
 
-draw()
+def first_question():
+    first = input("Higher or lower? ").lower()
+    if first == "higher" and card_draw[1].val_num >= card_draw[0].val_num:
+        return True
+    elif first == "lower" and card_draw[1].val_num <= card_draw[0].val_num:
+        return True
+    return False
+
+def second_question():
+    return input("In between or outside? ").lower()
+
+def third_question():
+    return input("Red or black? ").lower()
+
+def fourth_question():
+    return input("Suit? ").lower()
+
+def final_question():
+    return input("Face card or nah? ").lower()
+
+def start():
+    print(card_draw)
+    if first_question():
+        if second_question():
+            if third_question():
+                if fourth_question():
+                    if final_question():
+                        print("PASS")
+    else:
+        print("FAIL")
+
+start()
