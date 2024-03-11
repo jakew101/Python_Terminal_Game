@@ -32,7 +32,9 @@ deck = [Card(suit, value) for suit in suits for value in values]
 
 
 def draw_cards():
-    return [deck.pop(deck.index(random.choice(deck))) for i in range(6)]
+    draw = [deck.pop(deck.index(random.choice(deck))) for i in range(6)]
+    deck.append(draw)
+    return draw
 
 card_draw = draw_cards()
 
@@ -47,12 +49,12 @@ def first_question(card_draw=card_draw):
 
 
 def second_question(card_draw=card_draw):
-    second_question = input("In between or outside? ").lower()
+    second_question = input("Between or outside? ").lower()
     if card_draw[0].val_num > card_draw[1].val_num:
         range_card = range(card_draw[0].val_num, ((card_draw[1].val_num) - 1), -1)
     else:
         range_card = range(card_draw[0].val_num, ((card_draw[1].val_num) + 1))
-    if second_question == "in between" and card_draw[2].val_num in range_card:
+    if second_question == "between" and card_draw[2].val_num in range_card:
         return True
     elif second_question == "outside" and card_draw[2].val_num not in range_card:
         return True
@@ -84,27 +86,36 @@ def final_question(card_draw=card_draw):
 
 def start():
     card_draw = draw_cards()
+    draw_count = 0
+    print(card_draw)
     print(card_draw[0])
+    draw_count += 1
     if first_question(card_draw):
         print(card_draw[1])
+        draw_count += 1
         if second_question(card_draw):
+            draw_count += 1
             print(card_draw[2])
             if third_question(card_draw):
+                draw_count += 1
                 print(card_draw[3])
                 if fourth_question(card_draw):
+                    draw_count += 1
                     print(card_draw[4])
                     if final_question(card_draw):
                         print(card_draw[5])
-                        print("Congratulations!")
+                        print(figlet_format("Congratulations!", font = "slscript"))
                         replay()
     print("Nope!")
-    print("Cards: " + str(card_draw))
+    print(card_draw[draw_count])
     replay()
 
 
 def replay():
-    prompt = input("Play again? ")
-    if prompt == "yes":
+    prompt = input("Play again?(Y/N) ").lower()
+    if prompt == "y":
+        print()
+        print(figlet_format("New game", font = "small"))
         start()
     exit()
 
