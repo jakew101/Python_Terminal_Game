@@ -29,12 +29,13 @@ values = {"Ace": 1, "2": 2, "3": 3, "4": 4, "5": 5, "6": 6, "7": 7, "8": 8, "9":
 
 deck = [Card(suit, value) for suit in suits for value in values]
 
+
 def draw_cards():
     return [deck.pop(deck.index(random.choice(deck))) for i in range(6)]
 
 card_draw = draw_cards()
 
-def first_question():
+def first_question(card_draw=card_draw):
     first_question = input("Higher or lower? ").lower()
     if first_question == "higher" and card_draw[1].val_num >= card_draw[0].val_num:
         return True
@@ -42,28 +43,31 @@ def first_question():
         return True
     return False
 
-# Revisit logic if first card is greater than the second card
-def second_question():
+def second_question(card_draw=card_draw):
     second_question = input("In between or outside? ").lower()
-    if second_question == "in between" and card_draw[2].val_num in range(card_draw[0].val_num, (card_draw[1].val_num)):
+    if card_draw[0].val_num > card_draw[1].val_num:
+        range_card = range(card_draw[0].val_num, ((card_draw[1].val_num) - 1), -1)
+    else:
+        range_card = range(card_draw[0].val_num, ((card_draw[1].val_num) + 1))
+    if second_question == "in between" and card_draw[2].val_num in range_card:
         return True
-    elif second_question == "outside" and card_draw[2].val_num not in range(card_draw[0].val_num, (card_draw[1].val_num)):
+    elif second_question == "outside" and card_draw[2].val_num not in range_card:
         return True
     return False
 
-def third_question():
+def third_question(card_draw=card_draw):
     third_question = input("Red or black? ").lower()
     if third_question == card_draw[3].color:
         return True
     return False
 
-def fourth_question():
+def fourth_question(card_draw=card_draw):
     fourth_question = input("Suit? ").lower()
     if fourth_question == card_draw[4].suit.lower():
         return True
     return False
 
-def final_question():
+def final_question(card_draw=card_draw):
     final_question = input("Face card or nah? ").lower()
     if final_question == "face card" and card_draw[5].is_face_card:
         return True
@@ -72,25 +76,23 @@ def final_question():
     return False
 
 def start():
+    card_draw = draw_cards()
     # printing card_draw for testing - remove later
     print(card_draw)
     print(card_draw[0])
-    if first_question():
+    if first_question(card_draw):
         print(card_draw[1])
-        if second_question():
+        if second_question(card_draw):
             print(card_draw[2])
-            if third_question():
+            if third_question(card_draw):
                 print(card_draw[3])
-                if fourth_question():
+                if fourth_question(card_draw):
                     print(card_draw[4])
-                    if final_question():
+                    if final_question(card_draw):
                         print(card_draw[5])
-                        print("PASS")
-    else:
-        print("FAIL")
+                        print("Congratulations!")
+    prompt = input("Play again? ").lower()
+    if prompt == "yes":
+        start()
 
 start()
-
-# print(card_draw)
-# for i in range(card_draw[0].val_num, card_draw[1].val_num):
-#     print(i)
