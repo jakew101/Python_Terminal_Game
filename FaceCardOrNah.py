@@ -10,7 +10,7 @@
 from pyfiglet import figlet_format
 import random
 
-print(figlet_format("Face Card or Nah?", font = "standard"))
+print(figlet_format("Face Card or Nah?", font = "bulbhead"))
 
 class Card:
     def __init__(self, suit, value):
@@ -22,6 +22,7 @@ class Card:
 
     def __repr__(self):
         return "{value} of {suit}".format(value=self.value, suit=self.suit)
+
 
 suits = ["Spades", "Clubs", "Hearts", "Diamonds"]
 
@@ -35,6 +36,7 @@ def draw_cards():
 
 card_draw = draw_cards()
 
+
 def first_question(card_draw=card_draw):
     first_question = input("Higher or lower? ").lower()
     if first_question == "higher" and card_draw[1].val_num >= card_draw[0].val_num:
@@ -42,6 +44,7 @@ def first_question(card_draw=card_draw):
     elif first_question == "lower" and card_draw[1].val_num <= card_draw[0].val_num:
         return True
     return False
+
 
 def second_question(card_draw=card_draw):
     second_question = input("In between or outside? ").lower()
@@ -55,17 +58,20 @@ def second_question(card_draw=card_draw):
         return True
     return False
 
+
 def third_question(card_draw=card_draw):
     third_question = input("Red or black? ").lower()
     if third_question == card_draw[3].color:
         return True
     return False
 
+
 def fourth_question(card_draw=card_draw):
     fourth_question = input("Suit? ").lower()
     if fourth_question == card_draw[4].suit.lower():
         return True
     return False
+
 
 def final_question(card_draw=card_draw):
     final_question = input("Face card or nah? ").lower()
@@ -75,10 +81,9 @@ def final_question(card_draw=card_draw):
         return True
     return False
 
+
 def start():
     card_draw = draw_cards()
-    # printing card_draw for testing - remove later
-    print(card_draw)
     print(card_draw[0])
     if first_question(card_draw):
         print(card_draw[1])
@@ -91,11 +96,18 @@ def start():
                     if final_question(card_draw):
                         print(card_draw[5])
                         print("Congratulations!")
+                        replay()
+    print("Nope!")
+    print("Cards: " + str(card_draw))
     replay()
+
 
 def replay():
     prompt = input("Play again? ")
     if prompt == "yes":
         start()
+    exit()
+
+
 
 start()
