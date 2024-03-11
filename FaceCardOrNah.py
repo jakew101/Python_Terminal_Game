@@ -5,7 +5,7 @@
 # If correct, the player guesses if the next card is red or black. 
 # If correct, the player guesses the suit of the next card. 
 # If correct, the player answers the final question: face card or nah?
-# If any of these decisions are not correct, the next player goes (rotational).
+# If any of these decisions are not correct or the player correctly guesses each card attribute correctly, the next player goes. 
 
 from pyfiglet import figlet_format
 import random
@@ -91,7 +91,10 @@ def start():
                     if final_question(card_draw):
                         print(card_draw[5])
                         print("Congratulations!")
-    prompt = input("Play again? ").lower()
+    replay()
+
+def replay():
+    prompt = input("Play again? ")
     if prompt == "yes":
         start()
 
