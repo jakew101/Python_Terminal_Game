@@ -33,13 +33,11 @@ deck = [Card(suit, value) for suit in suits for value in values]
 
 def draw_cards():
     draw = [deck.pop(deck.index(random.choice(deck))) for i in range(6)]
-    deck.append(draw)
     return draw
 
 card_draw = draw_cards()
 
-
-def first_question(card_draw=card_draw):
+def first_question(card_draw):
     first_question = input("Higher or lower? ").lower()
     if first_question == "higher" and card_draw[1].val_num >= card_draw[0].val_num:
         return True
@@ -48,7 +46,7 @@ def first_question(card_draw=card_draw):
     return False
 
 
-def second_question(card_draw=card_draw):
+def second_question(card_draw):
     second_question = input("Between or outside? ").lower()
     if card_draw[0].val_num > card_draw[1].val_num:
         range_card = range(card_draw[0].val_num, ((card_draw[1].val_num) - 1), -1)
@@ -61,21 +59,21 @@ def second_question(card_draw=card_draw):
     return False
 
 
-def third_question(card_draw=card_draw):
+def third_question(card_draw):
     third_question = input("Red or black? ").lower()
     if third_question == card_draw[3].color:
         return True
     return False
 
 
-def fourth_question(card_draw=card_draw):
+def fourth_question(card_draw):
     fourth_question = input("Suit? ").lower()
     if fourth_question == card_draw[4].suit.lower():
         return True
     return False
 
 
-def final_question(card_draw=card_draw):
+def final_question(card_draw):
     final_question = input("Face card or nah? ").lower()
     if final_question == "face card" and card_draw[5].is_face_card:
         return True
