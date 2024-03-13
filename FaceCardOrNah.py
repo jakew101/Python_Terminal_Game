@@ -51,6 +51,7 @@ def shuffle_deck():
 
 
 def first_question(card_draw):
+    print(card_draw[0])
     first_question = input("Higher or lower? (higher/lower) ").lower()
     if first_question == "higher" and card_draw[1].val_num >= card_draw[0].val_num:
         return True
@@ -60,7 +61,8 @@ def first_question(card_draw):
 
 
 def second_question(card_draw):
-    second_question = input("in between or outside? (in/out) ").lower()
+    print(card_draw[1])
+    second_question = input("In between or outside? (in/out) ").lower()
     if card_draw[0].val_num > card_draw[1].val_num:
         range_card = range(card_draw[0].val_num, ((card_draw[1].val_num) - 1), -1)
     else:
@@ -73,6 +75,7 @@ def second_question(card_draw):
 
 
 def third_question(card_draw):
+    print(card_draw[2])
     third_question = input("Red or black? (red/black) ").lower()
     if third_question == card_draw[3].color:
         return True
@@ -80,6 +83,7 @@ def third_question(card_draw):
 
 
 def fourth_question(card_draw):
+    print(card_draw[3])
     fourth_question = input("Suit? (clubs/hearts/diamonds/spades) ").lower()
     if fourth_question == card_draw[4].suit.lower():
         return True
@@ -87,6 +91,7 @@ def fourth_question(card_draw):
 
 
 def final_question(card_draw):
+    print(card_draw[4])
     final_question = input("Face card or nah? (facecard/nah) ").lower()
     if final_question == "facecard" and card_draw[5].is_face_card:
         return True
@@ -98,24 +103,17 @@ def final_question(card_draw):
 def start():
     if len(deck) == 4:
         shuffle_deck()
+    draw_count = 1
     card_draw = draw_cards()
-    draw_count = 0
-    print(card_draw[0])
-    draw_count += 1
     if first_question(card_draw):
-        print(card_draw[1])
         draw_count += 1
         if second_question(card_draw):
             draw_count += 1
-            print(card_draw[2])
             if third_question(card_draw):
                 draw_count += 1
-                print(card_draw[3])
                 if fourth_question(card_draw):
                     draw_count += 1
-                    print(card_draw[4])
                     if final_question(card_draw):
-                        print(card_draw[5])
                         print(figlet_format("Congratulations!", font = "slscript"))
                         replay()
     print("Nope!")
