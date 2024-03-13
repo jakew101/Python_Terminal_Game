@@ -45,6 +45,8 @@ def shuffle_deck():
     for card in discard_pile.copy():
         deck.append(discard_pile.pop(discard_pile.index(card)))
     random.shuffle(deck)
+    print("Shuffling.........")
+    print()
     return deck
 
 
@@ -98,7 +100,6 @@ def start():
         shuffle_deck()
     card_draw = draw_cards()
     draw_count = 0
-    print(card_draw)
     print(card_draw[0])
     draw_count += 1
     if first_question(card_draw):
@@ -131,5 +132,4 @@ def replay():
     exit()
 
 
-
-# start()
+start()
