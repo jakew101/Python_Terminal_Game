@@ -94,8 +94,10 @@ def final_question(card_draw):
     print(card_draw[4])
     final_question = input("Face card or nah? (facecard/nah) ").lower()
     if final_question == "facecard" and card_draw[5].is_face_card:
+        print(card_draw[5])
         return True
     elif final_question == "nah" and not card_draw[5].is_face_card:
+        print(card_draw[5])
         return True
     return False
 
@@ -105,6 +107,7 @@ def start():
         shuffle_deck()
     draw_count = 1
     card_draw = draw_cards()
+    print(card_draw)
     if first_question(card_draw):
         draw_count += 1
         if second_question(card_draw):
