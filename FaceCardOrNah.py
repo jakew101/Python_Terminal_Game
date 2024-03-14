@@ -107,7 +107,6 @@ def start():
         shuffle_deck()
     draw_count = 1
     card_draw = draw_cards()
-    print(card_draw)
     if first_question(card_draw):
         draw_count += 1
         if second_question(card_draw):
