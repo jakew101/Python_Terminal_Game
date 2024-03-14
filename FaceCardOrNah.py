@@ -127,7 +127,7 @@ def replay():
     prompt = input("Play again? (Y/N) ").lower()
     if prompt == "y":
         print()
-        print(figlet_format("New game", font = "small"))
+        print(figlet_format("New turn", font = "small"))
         start()
     exit()
 
